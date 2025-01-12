@@ -14,7 +14,3 @@ def read_root(n : str = None):
         return {'result': fibonacci_series_usecase}
     except Exception as e:
         return {'error': str(e)}
-
-@app.get('/')
-def read_root():
-    return {'fibonacci': 'test'}
