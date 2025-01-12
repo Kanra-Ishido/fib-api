@@ -1,9 +1,9 @@
 class IntegerValueObject:
     def __init__(self, value):
-        self.value = self.integerCheck(value)
+        self.value = value
 
-    def integerCheck(self, value):
-        if not isinstance(value, int):
+    def execute(self):
+        if not isinstance(self.value, int):
             raise ValueError("正の整数を入力してください")
         
-        return value
+        return self.value
