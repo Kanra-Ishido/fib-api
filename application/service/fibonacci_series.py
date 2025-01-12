@@ -2,7 +2,7 @@ class FibonacciSeriesService:
     def __init__(self, value):
         self.value = value
 
-    def calculate(self):
+    def execute(self):
         if self.value == 0:
             return 0
         
