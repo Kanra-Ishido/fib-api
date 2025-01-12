@@ -10,7 +10,7 @@ app = APIRouter()
 @app.get('/fib')
 def read_root(n : str = None):
     try:
-        fibonacci_series_usecase = FibonacciSeriesUsecase(n).calculate()
+        fibonacci_series_usecase = FibonacciSeriesUsecase(n).execute()
         return {'result': fibonacci_series_usecase}
     except Exception as e:
         return {'error': str(e)}

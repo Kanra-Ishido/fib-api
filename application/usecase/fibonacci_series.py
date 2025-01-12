@@ -10,7 +10,7 @@ class FibonacciSeriesUsecase:
     def __init__(self, value=None):
         self.value = value
 
-    def calculate(self):
+    def execute(self):
         number_item_validation = FibonacciSeriesValueObject(self.value).value
         number_item = NumberItemEntity(number_item_validation).toJson()['number_item']
         fibonacci_series_service = FibonacciSeriesService(number_item).execute()
