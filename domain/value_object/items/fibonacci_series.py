@@ -7,13 +7,18 @@ import elements
 
 class FibonacciSeriesValueObject(elements.ExistValueObject, elements.SingleValueObject, elements.StringValueObject, elements.MinusValueObject, elements.FloatValueObject, elements.IntegerValueObject):
     def __init__(self, value=None):
-        formatting_value = self.typeChange(value)
+        self.value = value
+
+    def execute(self):
+        formatting_value = self.typeChange(self.value)
         exist_value = self.existCheck(formatting_value)
         single_value = self.singleCheck(exist_value)
         not_string_value = self.stringCheck(single_value)
         not_minus_value = self.minusCheck(not_string_value)
         not_float_value = self.floatCheck(not_minus_value)
-        self.value = self.integerCheck(not_float_value)
+        validation_value = self.integerCheck(not_float_value)
+        return validation_value
+
 
     def existCheck(self, value):
         return elements.ExistValueObject(value).execute()
