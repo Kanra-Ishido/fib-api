@@ -43,12 +43,16 @@ class FibonacciSeriesValueObject(elements.ExistValueObject, elements.SingleValue
             return None
         
         try:
-            return int(value)
+            float_value = float(value)
+            if not float_value % 1 == 0:
+                return float_value
         except:
             pass
-
+        
         try:
-            return float(value)
+            if float_value:
+                return int(float_value)
+            return int(value)
         except:
             pass
 
