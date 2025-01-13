@@ -8,6 +8,7 @@ from elements.minus import MinusValueObject
 from elements.float import FloatValueObject
 from elements.exist import ExistValueObject
 from elements.single import SingleValueObject
+from elements.max_size import MaxSizeValueObject
 
 ValueObjects = {
     'IntegerValueObject': IntegerValueObject,
@@ -15,5 +16,6 @@ ValueObjects = {
     'MinusValueObject': MinusValueObject,
     'FloatValueObject': FloatValueObject,
     'ExistValueObject': ExistValueObject,
-    'SingleValueObject': SingleValueObject
+    'SingleValueObject': SingleValueObject,
+    'MaxSizeValueObject': MaxSizeValueObject
 }

@@ -11,7 +11,7 @@ class FibonacciSeriesUsecase:
         self.value = value
 
     def execute(self):
-        number_item_validation = FibonacciSeriesValueObject(self.value).execute()
+        number_item_validation = FibonacciSeriesValueObject(self.value).execute_input()
         number_item = NumberItemEntity(number_item_validation).toJson()['number_item']
         fibonacci_series_service = FibonacciSeriesService(number_item).execute()
         return fibonacci_series_service

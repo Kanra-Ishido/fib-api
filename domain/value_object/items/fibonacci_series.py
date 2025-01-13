@@ -5,11 +5,11 @@ import ast
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 import elements
 
-class FibonacciSeriesValueObject(elements.ExistValueObject, elements.SingleValueObject, elements.StringValueObject, elements.MinusValueObject, elements.FloatValueObject, elements.IntegerValueObject):
+class FibonacciSeriesValueObject(elements.ExistValueObject, elements.SingleValueObject, elements.StringValueObject, elements.MinusValueObject, elements.FloatValueObject, elements.IntegerValueObject, elements.MaxSizeValueObject):
     def __init__(self, value=None):
         self.value = value
 
-    def execute(self):
+    def execute_input(self):
         formatting_value = self.typeChange(self.value)
         exist_value = self.existCheck(formatting_value)
         single_value = self.singleCheck(exist_value)
@@ -18,7 +18,10 @@ class FibonacciSeriesValueObject(elements.ExistValueObject, elements.SingleValue
         not_float_value = self.floatCheck(not_minus_value)
         validation_value = self.integerCheck(not_float_value)
         return validation_value
-
+    
+    def execute_output(self):
+        max_size_value = self.maxSizeCheck(self.value)
+        return max_size_value
 
     def existCheck(self, value):
         return elements.ExistValueObject(value).execute()
@@ -38,17 +41,24 @@ class FibonacciSeriesValueObject(elements.ExistValueObject, elements.SingleValue
     def integerCheck(self, value):
         return elements.IntegerValueObject(value).execute()
     
+    def maxSizeCheck(self, value):
+        return elements.MaxSizeValueObject(value).execute()
+    
     def typeChange(self, value):
         if value == '':
             return None
         
         try:
-            return int(value)
+            float_value = float(value)
+            if not float_value % 1 == 0:
+                return float_value
         except:
             pass
-
+        
         try:
-            return float(value)
+            if float_value:
+                return int(float_value)
+            return int(value)
         except:
             pass
 
